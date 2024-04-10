@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Domain
 {
-    internal class BlockchainInfoEth: BaseBlockchainInfo
+    public class BlockchainInfoEth: BaseBlockchainInfo
     {
         public long HighGasPrice { get; set; }
         public long MediumGasPrice { get; set; }
