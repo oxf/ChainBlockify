@@ -9,15 +9,15 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ChainBlockify/ChainBlockify.csproj", "ChainBlockify/"]
+COPY ["ChainBlockify.API/ChainBlockify.API.csproj", "ChainBlockify.API/"]
 RUN dotnet restore "./ChainBlockify/./ChainBlockify.csproj"
 COPY . .
-WORKDIR "/src/ChainBlockify"
-RUN dotnet build "./ChainBlockify.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/ChainBlockify.API"
+RUN dotnet build "./ChainBlockify.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ChainBlockify.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./ChainBlockify.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
