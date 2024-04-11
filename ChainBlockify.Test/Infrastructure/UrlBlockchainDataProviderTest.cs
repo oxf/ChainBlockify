@@ -15,7 +15,7 @@ namespace ChainBlockify.Test.Infrastructure
         {
             // Arrange
             var logger = Substitute.For<ILogger<UrlBlockchainInfoProvider>>();
-            var httpClient = Substitute.For<HttpClient>();
+            var httpClient = Substitute.For<IHttpClientFactory>();
             var baseUrl = "https://api.blockcypher.com/v1";
             var currency = "btc";
             var cancellationToken = CancellationToken.None;
@@ -49,7 +49,7 @@ namespace ChainBlockify.Test.Infrastructure
         {
             // Arrange
             var logger = Substitute.For<ILogger<UrlBlockchainInfoProvider>>();
-            var httpClient = Substitute.For<HttpClient>();
+            var httpClient = Substitute.For<IHttpClientFactory>();
             var baseUrl = "https://api.blockcypher.com/v1";
             var currency = "btc";
             var cancellationToken = CancellationToken.None;

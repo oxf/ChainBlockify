@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.Interfaces
 {
-    public interface IBlockchainInfoProvider 
+    public interface IBlockchainInfoProvider<DTO> 
     {
         /// <summary>
         /// Interface that retrieves the blockchain info from various sources
@@ -15,6 +15,6 @@ namespace ChainBlockify.Application.Interfaces
         /// <param name="url">URL of the API to download data</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns></returns>
-        public Task<BaseBlockchainInfo> GetBlockchainInfo(string url, CancellationToken cancellationToken);
+        public Task<DTO> GetBlockchainInfo(string url, CancellationToken cancellationToken);
     }
 }

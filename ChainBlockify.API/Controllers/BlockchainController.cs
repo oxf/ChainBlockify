@@ -26,7 +26,7 @@ namespace ChainBlockify.Controllers
         [HttpPost("{Id}/fetch")]
         public async Task<ActionResult<BaseBlockchainInfo>> FetchBlockchainInfoById(int Id)
         {
-            return Ok(_mediator.Send(new FetchBlockchainInfoCommand(Id)));
+            return Ok(await _mediator.Send(new FetchBlockchainInfoCommand(Id)));
         }
     }
 }

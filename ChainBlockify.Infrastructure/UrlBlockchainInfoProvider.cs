@@ -2,6 +2,8 @@
 using ChainBlockify.Domain;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
+using System.Net.Http.Json;
+using System.Net.Http;
 
 namespace ChainBlockify.Infrastructure
 {
@@ -10,10 +12,10 @@ namespace ChainBlockify.Infrastructure
     /// </summary>
     /// <param name="_logger">Logger</param>
     /// <param name="_httpClient">Http client</param>
-    public class UrlBlockchainInfoProvider(
-        ILogger<UrlBlockchainInfoProvider> _logger,
-        HttpClient _httpClient
-    ) : IBlockchainInfoProvider
+    public class UrlBlockchainInfoProvider<DTO>(
+        ILogger<UrlBlockchainInfoProvider<DTO>> _logger,
+        IHttpClientFactory _httpClientFactory
+    ) : IBlockchainInfoProvider<DTO>
     {
         /// <summary>
         /// Download blockchain data from API via HTTP
@@ -23,28 +25,24 @@ namespace ChainBlockify.Infrastructure
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns></returns>
         /// <exception cref="HttpRequestException"></exception>
-        public async Task<BaseBlockchainInfo> GetBlockchainInfo(string url, CancellationToken cancellationToken)
+        public async Task<DTO> GetBlockchainInfo(string url, CancellationToken cancellationToken)
         {
             try
             {
-                var response = await _httpClient.GetAsync(url, cancellationToken);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new HttpRequestException($"Failed to fetch data for {url}. Status code: {response.StatusCode}");
-                }
-                using (var contentStream = await response.Content.ReadAsStreamAsync(cancellationToken))
-                {
-                    try
-                    {
-                        return await JsonSerializer.DeserializeAsync<BaseBlockchainInfo>(contentStream, cancellationToken: cancellationToken);
-                    }
-                    catch (JsonException ex)
-                    {
-                        _logger.LogError($"Failed to deserialize JSON response for {url}. Error: {ex.Message}");
-                        throw;
-                    }
-                }
+                var client = _httpClientFactory.CreateClient();
+                var response = await client.GetFromJsonAsync<DTO>(url, cancellationToken);
+                return response;
+            }
+            catch (HttpRequestException ex)
+            {
+                // Handle HTTP request errors (e.g., network issues)
+                _logger.LogError(ex, $"HTTP request error occurred while fetching blockchain info for {url}");
+                throw;
+            }
+            catch (JsonException ex)
+            {
+                _logger.LogError(ex, $"JSON serialization/deserialization error occurred while fetching blockchain info for {url}");
+                throw;
             }
             catch (Exception ex)
             {
