@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChainBlockify.Domain\ChainBlockify.Domain.csproj" />
+    <ProjectReference Include="..\ChainBlockify.Application\ChainBlockify.Application.csproj" />
   </ItemGroup>
 
 </Project>
