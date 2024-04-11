@@ -1,3 +1,6 @@
+using ChainBlockify.Application;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddLogging(logger =>
+{
+    logger.AddConsole();
+});
+builder.Services.ConfigureApplicationLayer();
+builder.Services.ConfigureInfrastructureLayer();
 
 var app = builder.Build();
 

@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainBlockify.API", "ChainBlockify\ChainBlockify.API.csproj", "{F019033B-9F0C-44D8-A0EE-AEAC3B1E1823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainBlockify.Domain", "ChainBlockify.Domain\ChainBlockify.Domain.csproj", "{96106372-83D6-4D49-B2DE-1C5175E33164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainBlockify.Domain", "ChainBlockify.Domain\ChainBlockify.Domain.csproj", "{96106372-83D6-4D49-B2DE-1C5175E33164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainBlockify.Application", "ChainBlockify.Application\ChainBlockify.Application.csproj", "{A0C1E2C4-E387-47BC-A3A6-6DB4411921C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainBlockify.Application", "ChainBlockify.Application\ChainBlockify.Application.csproj", "{A0C1E2C4-E387-47BC-A3A6-6DB4411921C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainBlockify.API", "ChainBlockify.API\ChainBlockify.API.csproj", "{82C75477-273F-4A82-B418-7060D8AD8845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainBlockify.Infrastructure", "ChainBlockify.Infrastructure\ChainBlockify.Infrastructure.csproj", "{6700935D-84FE-4503-836F-69B4B4AFE930}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainBlockify.Test", "ChainBlockify.Test\ChainBlockify.Test.csproj", "{22C53C23-BA64-40F9-BBC2-38BABF1C2918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F019033B-9F0C-44D8-A0EE-AEAC3B1E1823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F019033B-9F0C-44D8-A0EE-AEAC3B1E1823}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F019033B-9F0C-44D8-A0EE-AEAC3B1E1823}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F019033B-9F0C-44D8-A0EE-AEAC3B1E1823}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96106372-83D6-4D49-B2DE-1C5175E33164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96106372-83D6-4D49-B2DE-1C5175E33164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96106372-83D6-4D49-B2DE-1C5175E33164}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +27,18 @@ Global
 		{A0C1E2C4-E387-47BC-A3A6-6DB4411921C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C1E2C4-E387-47BC-A3A6-6DB4411921C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C1E2C4-E387-47BC-A3A6-6DB4411921C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82C75477-273F-4A82-B418-7060D8AD8845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C75477-273F-4A82-B418-7060D8AD8845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C75477-273F-4A82-B418-7060D8AD8845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C75477-273F-4A82-B418-7060D8AD8845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6700935D-84FE-4503-836F-69B4B4AFE930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6700935D-84FE-4503-836F-69B4B4AFE930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6700935D-84FE-4503-836F-69B4B4AFE930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6700935D-84FE-4503-836F-69B4B4AFE930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22C53C23-BA64-40F9-BBC2-38BABF1C2918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22C53C23-BA64-40F9-BBC2-38BABF1C2918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22C53C23-BA64-40F9-BBC2-38BABF1C2918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22C53C23-BA64-40F9-BBC2-38BABF1C2918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

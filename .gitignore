@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /ChainBlockify/appsettings.json
+/ChainBlockify.API/appsettings.Development.json
+/ChainBlockify.API/appsettings.json
