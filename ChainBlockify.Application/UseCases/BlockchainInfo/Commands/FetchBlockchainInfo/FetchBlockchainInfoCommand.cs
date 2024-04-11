@@ -7,8 +7,5 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo
 {
-    public class FetchBlockchainInfoCommand: IRequest<Unit>
-    {
-        public int BlockchainId { get; set; }
-    }
+    public record FetchBlockchainInfoCommand(int BlockchainId) : IRequest<Unit>;
 }

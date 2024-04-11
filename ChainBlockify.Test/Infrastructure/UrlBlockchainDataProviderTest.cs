@@ -14,13 +14,13 @@ namespace ChainBlockify.Test.Infrastructure
         public async Task GetBlockchainInfo_Success()
         {
             // Arrange
-            var logger = Substitute.For<ILogger<UrlBlockchainDataProvider>>();
+            var logger = Substitute.For<ILogger<UrlBlockchainInfoProvider>>();
             var httpClient = Substitute.For<HttpClient>();
             var baseUrl = "https://api.blockcypher.com/v1";
             var currency = "btc";
             var cancellationToken = CancellationToken.None;
 
-            var dataProvider = new UrlBlockchainDataProvider(logger, httpClient, baseUrl);
+            var dataProvider = new UrlBlockchainInfoProvider(logger, httpClient);
 
             var content = new MemoryStream();
             var blockchainInfo = new BlockchainInfoBtc();
@@ -48,13 +48,13 @@ namespace ChainBlockify.Test.Infrastructure
         public async Task GetBlockchainInfo_HandlesHttpRequestException()
         {
             // Arrange
-            var logger = Substitute.For<ILogger<UrlBlockchainDataProvider>>();
+            var logger = Substitute.For<ILogger<UrlBlockchainInfoProvider>>();
             var httpClient = Substitute.For<HttpClient>();
             var baseUrl = "https://api.blockcypher.com/v1";
             var currency = "btc";
             var cancellationToken = CancellationToken.None;
 
-            var dataProvider = new UrlBlockchainDataProvider(logger, httpClient, baseUrl);
+            var dataProvider = new UrlBlockchainInfoProvider(logger, httpClient);
 
             var responseMessage = new HttpResponseMessage(HttpStatusCode.NotFound);
 
