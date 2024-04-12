@@ -1,4 +1,5 @@
 using ChainBlockify.Application;
+using ChainBlockify.Persistence;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,7 @@ builder.Services.AddLogging(logger =>
 });
 builder.Services.ConfigureApplicationLayer();
 builder.Services.ConfigureInfrastructureLayer();
-
+builder.Services.ConfigurePersistenceLayer(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

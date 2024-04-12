@@ -1,9 +1,9 @@
 ﻿namespace ChainBlockify.Domain
 {
-    public class Blockchain
+    public class BlockchainSource
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<BlockchainBlockchainSource> Sources { get; set;}
+        public string Url { get; set; }
     }
 }
