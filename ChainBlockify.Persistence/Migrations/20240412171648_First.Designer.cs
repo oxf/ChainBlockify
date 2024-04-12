@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChainBlockify.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240412164319_First")]
+    [Migration("20240412171648_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace ChainBlockify.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BlockchainDbSet");
+                    b.ToTable("Blockchain");
                 });
 
             modelBuilder.Entity("ChainBlockify.Domain.BlockchainBlockchainSource", b =>
@@ -65,7 +65,7 @@ namespace ChainBlockify.Persistence.Migrations
 
                     b.HasIndex("BlockchainsId");
 
-                    b.ToTable("BlockchainBlockchainSourceDbSet");
+                    b.ToTable("BlockchainBlockchainSource");
                 });
 
             modelBuilder.Entity("ChainBlockify.Domain.BlockchainSource", b =>
@@ -80,13 +80,9 @@ namespace ChainBlockify.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("BlockchainSourceDbSet");
+                    b.ToTable("BlockchainSource");
                 });
 
             modelBuilder.Entity("ChainBlockify.Domain.BlockchainBlockchainSource", b =>

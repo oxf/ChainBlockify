@@ -1,4 +1,4 @@
-﻿using ChainBlockify.Domain;
+﻿using ChainBlockify.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -10,9 +10,9 @@ namespace ChainBlockify.Persistence
         {
 
         }
-        DbSet<Blockchain> BlockchainDbSet { get; set; }
-        DbSet<BlockchainSource> BlockchainSourceDbSet { get; set; }
-        DbSet<BlockchainBlockchainSource> BlockchainBlockchainSourceDbSet { get; set; }
+        internal DbSet<Blockchain> BlockchainDbSet { get; set; }
+        internal DbSet<BlockchainSource> BlockchainSourceDbSet { get; set; }
+        internal DbSet<BlockchainBlockchainSource> BlockchainBlockchainSourceDbSet { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

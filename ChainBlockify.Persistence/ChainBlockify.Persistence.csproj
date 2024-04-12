@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChainBlockify.Application\ChainBlockify.Application.csproj" />
     <ProjectReference Include="..\ChainBlockify.Domain\ChainBlockify.Domain.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,6 @@
 using ChainBlockify.Application.Interfaces;
 using ChainBlockify.Domain;
+using ChainBlockify.Domain.Entities;
 using ChainBlockify.Infrastructure;
 using Microsoft.Extensions.Logging;
 using NSubstitute;

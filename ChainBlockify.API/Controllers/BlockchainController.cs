@@ -1,6 +1,6 @@
 using ChainBlockify.Application.UseCases.BlockchainInfo;
 using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo;
-using ChainBlockify.Domain;
+using ChainBlockify.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

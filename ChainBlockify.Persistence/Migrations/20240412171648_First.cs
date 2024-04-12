@@ -11,7 +11,7 @@ namespace ChainBlockify.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BlockchainDbSet",
+                name: "Blockchain",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,25 +20,24 @@ namespace ChainBlockify.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlockchainDbSet", x => x.Id);
+                    table.PrimaryKey("PK_Blockchain", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlockchainSourceDbSet",
+                name: "BlockchainSource",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlockchainSourceDbSet", x => x.Id);
+                    table.PrimaryKey("PK_BlockchainSource", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlockchainBlockchainSourceDbSet",
+                name: "BlockchainBlockchainSource",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -49,43 +48,43 @@ namespace ChainBlockify.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlockchainBlockchainSourceDbSet", x => x.Id);
+                    table.PrimaryKey("PK_BlockchainBlockchainSource", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BlockchainBlockchainSourceDbSet_BlockchainDbSet_BlockchainsId",
-                        column: x => x.BlockchainsId,
-                        principalTable: "BlockchainDbSet",
+                        name: "FK_BlockchainBlockchainSource_BlockchainSource_BlockchainSourceId",
+                        column: x => x.BlockchainSourceId,
+                        principalTable: "BlockchainSource",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BlockchainBlockchainSourceDbSet_BlockchainSourceDbSet_BlockchainSourceId",
-                        column: x => x.BlockchainSourceId,
-                        principalTable: "BlockchainSourceDbSet",
+                        name: "FK_BlockchainBlockchainSource_Blockchain_BlockchainsId",
+                        column: x => x.BlockchainsId,
+                        principalTable: "Blockchain",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlockchainBlockchainSourceDbSet_BlockchainSourceId",
-                table: "BlockchainBlockchainSourceDbSet",
-                column: "BlockchainSourceId");
+                name: "IX_BlockchainBlockchainSource_BlockchainsId",
+                table: "BlockchainBlockchainSource",
+                column: "BlockchainsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlockchainBlockchainSourceDbSet_BlockchainsId",
-                table: "BlockchainBlockchainSourceDbSet",
-                column: "BlockchainsId");
+                name: "IX_BlockchainBlockchainSource_BlockchainSourceId",
+                table: "BlockchainBlockchainSource",
+                column: "BlockchainSourceId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BlockchainBlockchainSourceDbSet");
+                name: "BlockchainBlockchainSource");
 
             migrationBuilder.DropTable(
-                name: "BlockchainDbSet");
+                name: "BlockchainSource");
 
             migrationBuilder.DropTable(
-                name: "BlockchainSourceDbSet");
+                name: "Blockchain");
         }
     }
 }
