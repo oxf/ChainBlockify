@@ -4,6 +4,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 using System.Net.Http;
+using ChainBlockify.Application.DTOs.Blockcypher;
 
 namespace ChainBlockify.Infrastructure
 {
@@ -15,7 +16,7 @@ namespace ChainBlockify.Infrastructure
     public class UrlBlockchainInfoProvider<DTO>(
         ILogger<UrlBlockchainInfoProvider<DTO>> _logger,
         IHttpClientFactory _httpClientFactory
-    ) : IBlockchainInfoProvider<DTO>
+    ) : IBlockchainInfoProvider<DTO> where DTO : BaseBlockcypherDto
     {
         /// <summary>
         /// Download blockchain data from API via HTTP
@@ -30,7 +31,11 @@ namespace ChainBlockify.Infrastructure
             try
             {
                 var client = _httpClientFactory.CreateClient();
-                var response = await client.GetFromJsonAsync<DTO>(url, cancellationToken);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                };
+                var response = await client.GetFromJsonAsync<DTO>(url, options, cancellationToken);
                 return response;
             }
             catch (HttpRequestException ex)

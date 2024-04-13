@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ChainBlockify.Application.Interfaces;
+using ChainBlockify.Domain.Entities;
+using ChainBlockify.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,6 +20,7 @@ namespace ChainBlockify.Persistence
             services.AddDbContext<AppDbContext>(options =>
                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                    builder => builder.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+            services.AddTransient<IRepository<Blockchain>, BlockchainRepository>();
         }
     }
 }

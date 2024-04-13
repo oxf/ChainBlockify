@@ -1,4 +1,5 @@
-﻿using ChainBlockify.Application.Interfaces;
+﻿using ChainBlockify.Application.DTOs.Blockcypher;
+using ChainBlockify.Application.Interfaces;
 using ChainBlockify.Domain;
 using MediatR;
 using Microsoft.Extensions.Logging;
