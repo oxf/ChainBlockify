@@ -1,7 +1,9 @@
 using ChainBlockify.Application.UseCases.Blockchain.Queries.GetAllBlockchain;
+using ChainBlockify.Application.UseCases.Blockchain.Queries.GetBlockchainById;
 using ChainBlockify.Application.UseCases.BlockchainInfo;
 using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo;
 using ChainBlockify.Domain.Entities;
+using ChainBlockify.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +26,15 @@ namespace ChainBlockify.Controllers
         [HttpGet("{Id}")]
         public async Task<ActionResult<Blockchain>> GetById(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _mediator.Send(new GetBlockchainByIdQuery(Id));
+                return Ok(result);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
         [HttpPost("{Id}/fetch")]
         public async Task<ActionResult<BaseBlockchainInfo>> FetchBlockchainInfoById(int Id)
