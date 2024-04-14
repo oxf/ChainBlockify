@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChainBlockify.Domain
+namespace ChainBlockify.Domain.Entities
 {
-    public abstract class BaseBlockchainInfo
+    public abstract class BaseBlockchainInfo: BaseTimestampEntity
     {
         public string Name { get; set; }
         public int Height { get; set; }

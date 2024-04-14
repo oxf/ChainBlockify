@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChainBlockify.Domain
+namespace ChainBlockify.Domain.Entities
 {
-    public class BlockchainInfoEth: BaseBlockchainInfo
+    public class BlockchainInfoEth : BaseBlockchainInfo
     {
         public long HighGasPrice { get; set; }
         public long MediumGasPrice { get; set; }

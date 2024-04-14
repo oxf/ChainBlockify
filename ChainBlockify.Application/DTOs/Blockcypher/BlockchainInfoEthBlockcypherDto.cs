@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChainBlockify.Application.DTOs.Blockcypher;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Domain
 {
-    public record BlockchainInfoEthBlockcypherDto: BaseBlockchainInfoBlockcypherDto
+    public class BlockchainInfoEthBlockcypherDto: BaseBlockchainInfoBlockcypherDto
     {
         private readonly long HighGasPrice;
         private readonly long MediumGasPrice;
