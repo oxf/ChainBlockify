@@ -3,20 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ChainBlockify.Domain
 {
     public class BlockchainInfoEthBlockcypherDto: BaseBlockchainInfoBlockcypherDto
     {
-        private readonly long HighGasPrice;
-        private readonly long MediumGasPrice;
-        private readonly long LowGasPrice;
-        private readonly long HighPriorityFee;
-        private readonly long MediumPriorityFee;
-        private readonly long LowPriorityFee;
-        private readonly long BaseFee;
-
+        public long HighGasPrice { get; set; }
+        public long MediumGasPrice { get; set; }
+        public long LowGasPrice { get; set; }
+        public long HighPriorityFee { get; set; }
+        public long MediumPriorityFee { get; set; }
+        public long LowPriorityFee { get; set; }
+        public long BaseFee { get; set; }
+        [JsonConstructor]
         public BlockchainInfoEthBlockcypherDto(
             string Name,
             int Height,
