@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.DTOs.Blockcypher
 {
-    public record BaseBlockcypherDto;
+    public abstract class BaseBlockcypherDto;
 }

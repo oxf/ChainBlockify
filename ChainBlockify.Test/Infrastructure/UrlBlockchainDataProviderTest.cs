@@ -9,7 +9,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
-using ChainBlockify.Application.DTOs.Blockcypher;
 using System.Net.Http.Headers;
 
 namespace ChainBlockify.Test.Infrastructure
@@ -30,22 +29,22 @@ namespace ChainBlockify.Test.Infrastructure
             // Arrange
             var mockLogger = Substitute.For<ILogger<UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>>>();
             var mockHttpClientFactory = Substitute.For<IHttpClientFactory>();
-            var mockDto = new BlockchainInfoBtcBlockcypherDto(
-                "a",
-                100,
-                "b",
-                new DateTime(2024, 4, 12, 1, 2, 3),
-                "c",
-                "d",
-                "e",
-                int.MaxValue,
-                int.MinValue,
-                101,
-                "f",
-                102,
-                103,
-                104
-                );
+            var mockDto = new BlockchainInfoBtcBlockcypherDto();
+                //"a",
+                //100,
+                //"b",
+                //new DateTime(2024, 4, 12, 1, 2, 3),
+                //"c",
+                //"d",
+                //"e",
+                //int.MaxValue,
+                //int.MinValue,
+                //101,
+                //"f",
+                //102,
+                //103,
+                //104
+                //);
             string url = "https://api.blockcypher.com/v1/btc/main";
             var mockClient = new HttpClient(_handler)
             {

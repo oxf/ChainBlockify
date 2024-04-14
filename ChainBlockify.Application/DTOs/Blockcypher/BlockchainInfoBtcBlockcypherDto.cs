@@ -7,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.DTOs.Blockcypher
 {
-    public record BlockchainInfoBtcBlockcypherDto : BaseBlockchainInfoBlockcypherDto
+    public class BlockchainInfoBtcBlockcypherDto : BaseBlockchainInfoBlockcypherDto
     {
         [JsonPropertyName("high_fee_per_kb")]
-        private readonly int HighFeePerKB;
+        public int HighFeePerKB { get; set; }
         [JsonPropertyName("medium_fee_per_kb")]
-        private readonly int MediumFeePerKB;
+        public int MediumFeePerKB { get; set; }
         [JsonPropertyName("low_fee_per_kb")]
-        private readonly int LowFeePerKB;
-
+        public int LowFeePerKB { get; set; }
         [JsonConstructor]
-        public BlockchainInfoBtcBlockcypherDto() { }
         public BlockchainInfoBtcBlockcypherDto(
             string Name,
             int Height,

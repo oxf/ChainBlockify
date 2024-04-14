@@ -28,7 +28,7 @@ namespace ChainBlockify.Persistence.Repositories
         {
             try
             {
-                return await _dbContext.BlockchainDbSet.FindAsync(Id, cancellationToken);
+                return await _dbContext.BlockchainDbSet.Include(x => x.Sources).FirstOrDefaultAsync(x => x.Id == Id, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -55,7 +55,6 @@ namespace ChainBlockify.Persistence.Repositories
             {
                 var entityToUpdate = await _dbContext.BlockchainDbSet.FindAsync(entity.Id, cancellationToken);
                 entityToUpdate.Name = entity.Name;
-                entityToUpdate.Sources = entity.Sources;
                 await _dbContext.SaveChangesAsync(cancellationToken);
                 return entityToUpdate;
             }

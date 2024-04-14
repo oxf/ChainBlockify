@@ -16,7 +16,7 @@ namespace ChainBlockify.Application
     {
         public static IServiceCollection ConfigureInfrastructureLayer(this IServiceCollection services)
         {
-            services.AddTransient<IBlockchainInfoProvider<BaseBlockchainInfoBlockcypherDto>, UrlBlockchainInfoProvider<BaseBlockchainInfoBlockcypherDto>>();
+            services.AddTransient<IBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>, UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>>();
             services.AddHttpClient();
             return services;
         }

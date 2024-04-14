@@ -39,8 +39,15 @@ namespace ChainBlockify.Controllers
         [HttpPost("{Id}/fetch")]
         public async Task<ActionResult<BaseBlockchainInfo>> FetchBlockchainInfoById(int Id)
         {
-            var result = await _mediator.Send(new FetchBlockchainInfoCommand(Id));
-            return Created("/", result);
+            try
+            {
+                var result = await _mediator.Send(new FetchBlockchainInfoCommand(Id));
+                return Created("/", result);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

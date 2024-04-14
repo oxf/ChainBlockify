@@ -7,58 +7,44 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.DTOs.Blockcypher
 {
-    public record BaseBlockchainInfoBlockcypherDto: BaseBlockcypherDto
+    public abstract class BaseBlockchainInfoBlockcypherDto: BaseBlockcypherDto
     {
         [JsonPropertyName("name")]
-        private readonly string Name;
+        public string Name { get; set; }
 
         [JsonPropertyName("height")]
-        private readonly int Height;
+        public int Height { get; set; }
         [JsonPropertyName("hash")]
-        private readonly string Hash;
+        public string Hash { get; set; }
         [JsonPropertyName("time")]
-        private readonly DateTime Time;
+        public DateTime Time { get; set; }
         [JsonPropertyName("latest_url")]
-        private readonly string LatestUrl;
+        public string LatestUrl { get; set; }
         [JsonPropertyName("previous_hash")]
-        private readonly string PreviousHash;
+        public string PreviousHash { get; set; }
         [JsonPropertyName("previous_url")]
-        private readonly string PreviousUrl; 
+        public string PreviousUrl { get; set; }
         [JsonPropertyName("peer_count")]
-        private readonly int PeerCount;
+        public int PeerCount { get; set; }
         [JsonPropertyName("unconfirmed_count")]
-        private readonly int UnconfirmedCount;
+        public int UnconfirmedCount { get; set; }
         [JsonPropertyName("last_fork_height")]
-        private readonly int LastForkHeight;
+        public int LastForkHeight { get; set; }
         [JsonPropertyName("last_fork_hash")]
-        private readonly string LastForkHash;
-        [JsonConstructor]
-        public  BaseBlockchainInfoBlockcypherDto() { }
-        public BaseBlockchainInfoBlockcypherDto(
-        string Name,
-        int Height,
-        string Hash,
-        DateTime Time,
-        string LatestUrl,
-        string PreviousHash,
-        string PreviousUrl,
-        int PeerCount,
-        int UnconfirmedCount,
-        int LastForkHeight,
-        string LastForkHash
-        )
+        public string LastForkHash { get; set; }
+        public BaseBlockchainInfoBlockcypherDto(string name, int height, string hash, DateTime time, string latestUrl, string previousHash, string previousUrl, int peerCount, int unconfirmedCount, int lastForkHeight, string lastForkHash)
         {
-            this.Name = Name;
-            this.Height = Height;
-            this.Hash = Hash;
-            this.Time = Time;
-            this.LatestUrl = LatestUrl;
-            this.PreviousHash = PreviousHash;
-            this.PreviousUrl = PreviousUrl;
-            this.PeerCount = PeerCount;
-            this.UnconfirmedCount = UnconfirmedCount;
-            this.LastForkHeight = LastForkHeight;
-            this.LastForkHash = LastForkHash;
+            Name = name;
+            Height = height;
+            Hash = hash;
+            Time = time;
+            LatestUrl = latestUrl;
+            PreviousHash = previousHash;
+            PreviousUrl = previousUrl;
+            PeerCount = peerCount;
+            UnconfirmedCount = unconfirmedCount;
+            LastForkHeight = lastForkHeight;
+            LastForkHash = lastForkHash;
         }
     }
 }

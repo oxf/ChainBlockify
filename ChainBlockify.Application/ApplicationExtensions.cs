@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using ChainBlockify.Application.DTOs.Blockcypher;
 using ChainBlockify.Application.UseCases.Blockchain.Queries.GetAllBlockchain;
+using ChainBlockify.Application.UseCases.Blockchain.Queries.GetBlockchainById;
 using ChainBlockify.Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -29,7 +31,25 @@ namespace ChainBlockify.Application
 
         public void Blockchain()
         {
+            // ChainBlockify API
             CreateMap<Blockchain, GetBlockchainListDto>();
+            CreateMap<Blockchain, GetBlockchainByIdDto>();
+            // Blockcypher API
+            //CreateMap<BlockchainInfoBtcBlockcypherDto, BlockchainInfoBtc>()
+            //
+            CreateMap<BlockchainInfoBtcBlockcypherDto, BaseBlockchainInfo>()
+            .Include<BlockchainInfoBtcBlockcypherDto, BlockchainInfoBtc>();
+
+            CreateMap<BlockchainInfoBtcBlockcypherDto, BlockchainInfoBtc>()
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow))
+                .IncludeBase<BlockchainInfoBtcBlockcypherDto, BaseBlockchainInfo>();
+
+            CreateMap<BaseBlockchainInfoBlockcypherDto, BaseBlockchainInfo>()
+            .Include<BlockchainInfoBtcBlockcypherDto, BlockchainInfoBtc>();
+
+            CreateMap<BlockchainInfoBtcBlockcypherDto, BlockchainInfoBtc>()
+                // Map other properties as needed
+                .IncludeBase<BlockchainInfoBtcBlockcypherDto, BaseBlockchainInfo>();
         }
     }
 }

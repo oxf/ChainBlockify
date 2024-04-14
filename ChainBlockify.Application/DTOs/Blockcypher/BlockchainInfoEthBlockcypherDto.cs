@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Domain
 {
-    public record BlockchainInfoEthBlockcypherDto: BaseBlockchainInfoBlockcypherDto
+    public class BlockchainInfoEthBlockcypherDto: BaseBlockchainInfoBlockcypherDto
     {
         private readonly long HighGasPrice;
         private readonly long MediumGasPrice;

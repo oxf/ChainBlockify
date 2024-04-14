@@ -31,9 +31,9 @@ namespace ChainBlockify.Infrastructure
             try
             {
                 var client = _httpClientFactory.CreateClient();
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                JsonSerializerOptions options = new JsonSerializerOptions {
+                    IncludeFields = true,
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
                 };
                 var response = await client.GetFromJsonAsync<DTO>(url, options, cancellationToken);
                 return response;
