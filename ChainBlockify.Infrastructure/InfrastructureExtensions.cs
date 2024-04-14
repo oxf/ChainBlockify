@@ -1,4 +1,5 @@
-﻿using ChainBlockify.Application.Interfaces;
+﻿using ChainBlockify.Application.DTOs.Blockcypher;
+using ChainBlockify.Application.Interfaces;
 using ChainBlockify.Domain;
 using ChainBlockify.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,7 @@ namespace ChainBlockify.Application
     {
         public static IServiceCollection ConfigureInfrastructureLayer(this IServiceCollection services)
         {
-            services.AddTransient<IBlockchainInfoProvider<BaseBlockchainInfoBlockcypherDto>, UrlBlockchainInfoProvider<BaseBlockchainInfoBlockcypherDto>>();
+            services.AddTransient<IBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>, UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>>();
             services.AddHttpClient();
             return services;
         }

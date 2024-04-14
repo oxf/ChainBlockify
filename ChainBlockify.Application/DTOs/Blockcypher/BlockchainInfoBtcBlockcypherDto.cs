@@ -5,13 +5,17 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ChainBlockify.Domain
+namespace ChainBlockify.Application.DTOs.Blockcypher
 {
-    public record BlockchainInfoBtcBlockcypherDto : BaseBlockchainInfoBlockcypherDto
+    public class BlockchainInfoBtcBlockcypherDto : BaseBlockchainInfoBlockcypherDto
     {
-        private readonly int HighFeePerKB;
-        private readonly int MediumFeePerKB;
-        private readonly int LowFeePerKB;
+        [JsonPropertyName("high_fee_per_kb")]
+        public int HighFeePerKB { get; set; }
+        [JsonPropertyName("medium_fee_per_kb")]
+        public int MediumFeePerKB { get; set; }
+        [JsonPropertyName("low_fee_per_kb")]
+        public int LowFeePerKB { get; set; }
+        [JsonConstructor]
         public BlockchainInfoBtcBlockcypherDto(
             string Name,
             int Height,

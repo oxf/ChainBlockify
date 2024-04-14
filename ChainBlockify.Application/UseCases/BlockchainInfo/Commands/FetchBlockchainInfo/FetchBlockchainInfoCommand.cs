@@ -1,4 +1,5 @@
-﻿using ChainBlockify.Domain;
+﻿using ChainBlockify.Application.DTOs.Blockcypher;
+using ChainBlockify.Domain;
 using MediatR;
 using System;
 using System.Collections.Generic;
