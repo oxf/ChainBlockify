@@ -22,9 +22,9 @@ namespace ChainBlockify.Application
         public static IServiceCollection ConfigureApplicationLayer(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            //services.AddTransient<IRequestHandler<FetchBlockchainInfoCommand<BlockchainInfoBtcBlockcypherDto>, BaseBlockchainInfo>, FetchBlockchainInfoCommandHandler<BlockchainInfoBtcBlockcypherDto>>();
+            services.AddTransient<IRequestHandler<FetchBlockchainInfoCommand<BlockchainInfoBtcBlockcypherDto>, BaseBlockchainInfo>, FetchBlockchainInfoCommandHandler<BlockchainInfoBtcBlockcypherDto, BlockchainInfoBtc>>();
             services.AddTransient<IRequestHandler<FetchBlockchainInfoCommand<BlockchainInfoEthBlockcypherDto>, BaseBlockchainInfo>, FetchBlockchainInfoCommandHandler<BlockchainInfoEthBlockcypherDto, BlockchainInfoEth>>();
-            //services.AddTransient<IRequestHandler<FetchBlockchainInfoCommand<BlockchainInfoDashBlockcypherDto>, BaseBlockchainInfo>, FetchBlockchainInfoCommandHandler<BlockchainInfoDashBlockcypherDto>>();
+            services.AddTransient<IRequestHandler<FetchBlockchainInfoCommand<BlockchainInfoDashBlockcypherDto>, BaseBlockchainInfo>, FetchBlockchainInfoCommandHandler<BlockchainInfoDashBlockcypherDto, BlockchainInfoDash>>();
             services.AddAutoMapper(typeof(MappingProfile));
             return services;
         }
@@ -59,6 +59,15 @@ namespace ChainBlockify.Application
                 .Include<BlockchainInfoEthBlockcypherDto, BlockchainInfoEth>();
             CreateMap<BlockchainInfoEthBlockcypherDto, BlockchainInfoEth>()
                 .IncludeBase<BlockchainInfoEthBlockcypherDto, BaseBlockchainInfo>();
+            // DASH
+            CreateMap<BlockchainInfoDashBlockcypherDto, BaseBlockchainInfo>()
+                .Include<BlockchainInfoDashBlockcypherDto, BlockchainInfoDash>();
+            CreateMap<BlockchainInfoDashBlockcypherDto, BlockchainInfoDash>()
+                .IncludeBase<BlockchainInfoDashBlockcypherDto, BaseBlockchainInfo>();
+            CreateMap<BaseBlockchainInfoBlockcypherDto, BaseBlockchainInfo>()
+                .Include<BlockchainInfoDashBlockcypherDto, BlockchainInfoDash>();
+            CreateMap<BlockchainInfoDashBlockcypherDto, BlockchainInfoDash>()
+                .IncludeBase<BlockchainInfoDashBlockcypherDto, BaseBlockchainInfo>();
         }
     }
 }
