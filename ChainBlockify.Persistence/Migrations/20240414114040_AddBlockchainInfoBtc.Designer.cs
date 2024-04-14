@@ -4,6 +4,7 @@ using ChainBlockify.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChainBlockify.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240414114040_AddBlockchainInfoBtc")]
+    partial class AddBlockchainInfoBtc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,146 +131,6 @@ namespace ChainBlockify.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BlockchainInfoBtcDbSet");
-                });
-
-            modelBuilder.Entity("ChainBlockify.Domain.Entities.BlockchainInfoDash", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Hash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HighFeePerKB")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastForkHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LastForkHeight")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LatestUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LowFeePerKB")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MediumFeePerKB")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PeerCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PreviousHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreviousUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UnconfirmedCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BlockchainInfoDash");
-                });
-
-            modelBuilder.Entity("ChainBlockify.Domain.Entities.BlockchainInfoEth", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<long>("BaseFee")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Hash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<long>("HighGasPrice")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("HighPriorityFee")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("LastForkHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LastForkHeight")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LatestUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("LowGasPrice")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("LowPriorityFee")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("MediumGasPrice")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("MediumPriorityFee")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PeerCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PreviousHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreviousUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UnconfirmedCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BlockchainInfoEth");
                 });
 
             modelBuilder.Entity("ChainBlockify.Domain.Entities.BlockchainSource", b =>

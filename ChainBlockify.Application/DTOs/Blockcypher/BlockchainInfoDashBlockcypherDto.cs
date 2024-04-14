@@ -1,18 +1,24 @@
 ﻿using ChainBlockify.Application.DTOs.Blockcypher;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ChainBlockify.Domain
 {
-    public class BlockchainInfoDashBlockcyptherDto: BaseBlockchainInfoBlockcypherDto
+    [Table("BlockchainInfoDash")]
+    public class BlockchainInfoDashBlockcypherDto: BaseBlockchainInfoBlockcypherDto
     {
-        private readonly int HighFeePerKB;
-        private readonly int MediumFeePerKB;
-        private readonly int LowFeePerKB;
-        public BlockchainInfoDashBlockcyptherDto(
+        [JsonPropertyName("high_fee_per_kb")]
+        public int HighFeePerKB { get; set; }
+        [JsonPropertyName("medium_fee_per_kb")]
+        public int MediumFeePerKB { get; set; }
+        [JsonPropertyName("low_fee_per_kb")]
+        public int LowFeePerKB { get; set; }
+        public BlockchainInfoDashBlockcypherDto(
             string Name,
             int Height,
             string Hash,

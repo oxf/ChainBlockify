@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.DTOs.Blockcypher
 {
+    [Table("BlockchainInfoBtc")]
     public class BlockchainInfoBtcBlockcypherDto : BaseBlockchainInfoBlockcypherDto
     {
         [JsonPropertyName("high_fee_per_kb")]

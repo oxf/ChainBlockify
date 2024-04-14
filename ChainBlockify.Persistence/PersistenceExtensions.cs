@@ -21,6 +21,9 @@ namespace ChainBlockify.Persistence
                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                    builder => builder.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
             services.AddTransient<IRepository<Blockchain>, BlockchainRepository>();
+            services.AddTransient<IRepository<BlockchainInfoBtc>, BlockchainInfoBtcRepository>();
+            services.AddTransient<IRepository<BlockchainInfoEth>, BlockchainInfoEthRepository>();
+            services.AddTransient<IRepository<BlockchainInfoDash>, BlockchainInfoDashRepository>();
         }
     }
 }
