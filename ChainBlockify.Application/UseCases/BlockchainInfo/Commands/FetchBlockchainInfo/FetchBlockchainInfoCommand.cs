@@ -10,5 +10,5 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo
 {
-    public record FetchBlockchainInfoCommand<DTO>(int BlockchainId) : IRequest<BaseBlockchainInfo>;
+    public record FetchBlockchainInfoCommand<DTO>(string Url) : IRequest<BaseBlockchainInfo>;
 }
