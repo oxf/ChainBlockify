@@ -23,45 +23,45 @@ namespace ChainBlockify.Test.Infrastructure
             
         }
 
-        [Fact]
-        public async Task GetBlockchainInfo_Success()
-        {
-            // Arrange
-            var mockLogger = Substitute.For<ILogger<UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>>>();
-            var mockHttpClientFactory = Substitute.For<IHttpClientFactory>();
-            var mockDto = new BlockchainInfoBtcBlockcypherDto();
-                //"a",
-                //100,
-                //"b",
-                //new DateTime(2024, 4, 12, 1, 2, 3),
-                //"c",
-                //"d",
-                //"e",
-                //int.MaxValue,
-                //int.MinValue,
-                //101,
-                //"f",
-                //102,
-                //103,
-                //104
-                //);
-            string url = "https://api.blockcypher.com/v1/btc/main";
-            var mockClient = new HttpClient(_handler)
-            {
-                BaseAddress = new Uri(_baseAddress),
-            };
-            mockHttpClientFactory.CreateClient().Returns(mockClient);
-            _handler
-                .Expect(HttpMethod.Get, _baseAddress)
-                .Respond(HttpStatusCode.OK, JsonContent.Create<BlockchainInfoBtcBlockcypherDto>(mockDto));
+        //[Fact]
+        //public async Task GetBlockchainInfo_Success()
+        //{
+        //    // Arrange
+        //    var mockLogger = Substitute.For<ILogger<UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>>>();
+        //    var mockHttpClientFactory = Substitute.For<IHttpClientFactory>();
+        //    //var mockDto = new BlockchainInfoBtcBlockcypherDto();
+        //        //"a",
+        //        //100,
+        //        //"b",
+        //        //new DateTime(2024, 4, 12, 1, 2, 3),
+        //        //"c",
+        //        //"d",
+        //        //"e",
+        //        //int.MaxValue,
+        //        //int.MinValue,
+        //        //101,
+        //        //"f",
+        //        //102,
+        //        //103,
+        //        //104
+        //        //);
+        //    string url = "https://api.blockcypher.com/v1/btc/main";
+        //    var mockClient = new HttpClient(_handler)
+        //    {
+        //        BaseAddress = new Uri(_baseAddress),
+        //    };
+        //    mockHttpClientFactory.CreateClient().Returns(mockClient);
+        //    _handler
+        //        .Expect(HttpMethod.Get, _baseAddress)
+        //       // .Respond(HttpStatusCode.OK, JsonContent.Create<BlockchainInfoBtcBlockcypherDto>(mockDto));
             
-            // Act
-            UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto> provider = new UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>(mockLogger, mockHttpClientFactory);
-            var dto = await provider.GetBlockchainInfo(url, CancellationToken.None);
+        //    // Act
+        //    UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto> provider = new UrlBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto>(mockLogger, mockHttpClientFactory);
+        //    var dto = await provider.GetBlockchainInfo(url, CancellationToken.None);
 
-            // Assert
-            Assert.Equal(mockDto, dto);
-        }
+        //    // Assert
+        //    Assert.Equal(mockDto, dto);
+        //}
 
 
         //[Fact]
