@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ChainBlockify.Domain
 {
     [Table("BlockchainInfoDash")]
-    public class BlockchainInfoDashBlockcyptherDto: BaseBlockchainInfoBlockcypherDto
+    public class BlockchainInfoDashBlockcypherDto: BaseBlockchainInfoBlockcypherDto
     {
         [JsonPropertyName("high_fee_per_kb")]
         public int HighFeePerKB { get; set; }
@@ -18,7 +18,7 @@ namespace ChainBlockify.Domain
         public int MediumFeePerKB { get; set; }
         [JsonPropertyName("low_fee_per_kb")]
         public int LowFeePerKB { get; set; }
-        public BlockchainInfoDashBlockcyptherDto(
+        public BlockchainInfoDashBlockcypherDto(
             string Name,
             int Height,
             string Hash,

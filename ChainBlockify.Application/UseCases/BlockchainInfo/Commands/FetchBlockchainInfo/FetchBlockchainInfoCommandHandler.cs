@@ -15,14 +15,14 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo
 {
-    public class FetchBlockchainInfoCommandHandler(
-        ILogger<FetchBlockchainInfoCommandHandler> _logger,
+    public class FetchBlockchainInfoCommandHandler<TDto, TEntity>(
+        ILogger<FetchBlockchainInfoCommandHandler<TDto, TEntity>> _logger,
         IMapper _mapper,
         IRepository<Domain.Entities.Blockchain> _blockchainRepository,
-        IRepository<Domain.Entities.BlockchainInfoBtc> _blockchainInfoRepository,
-        IBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto> _dataProvider) : IRequestHandler<FetchBlockchainInfoCommand, BlockchainInfoBtc>
+        IRepository<TEntity> _blockchainInfoRepository,
+        IBlockchainInfoProvider<TDto> _dataProvider) : IRequestHandler<FetchBlockchainInfoCommand<TDto>, BaseBlockchainInfo> where TEntity : BaseBlockchainInfo
     {
-        public async Task<BlockchainInfoBtc> Handle(FetchBlockchainInfoCommand request, CancellationToken cancellationToken)
+        public async Task<BaseBlockchainInfo> Handle(FetchBlockchainInfoCommand<TDto> request, CancellationToken cancellationToken)
         {
             // get blockchain by id
             var blockchain = await _blockchainRepository.GetByIdAsync(request.BlockchainId, cancellationToken);
@@ -37,7 +37,7 @@ namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockc
                 throw new EntityNotFoundException(typeof(BlockchainBlockchainSource), 0, $"No Source found for Blockchain ID {request.BlockchainId}");
             }
             var response = await _dataProvider.GetBlockchainInfo(source.Url, cancellationToken);
-            var entityToSave = _mapper.Map<BlockchainInfoBtc>(response);
+            var entityToSave = _mapper.Map<TEntity>(response);
             entityToSave.CreatedAt = DateTime.UtcNow;
             // save blockchaininfo
             var result = await _blockchainInfoRepository.CreateAsync(entityToSave, cancellationToken);

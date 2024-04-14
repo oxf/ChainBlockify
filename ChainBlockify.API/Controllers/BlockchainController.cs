@@ -2,6 +2,7 @@ using ChainBlockify.Application.UseCases.Blockchain.Queries.GetAllBlockchain;
 using ChainBlockify.Application.UseCases.Blockchain.Queries.GetBlockchainById;
 using ChainBlockify.Application.UseCases.BlockchainInfo;
 using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo;
+using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.ResolveBlockchainInfo;
 using ChainBlockify.Domain.Entities;
 using ChainBlockify.Domain.Exceptions;
 using MediatR;
@@ -16,7 +17,10 @@ namespace ChainBlockify.Controllers
         IMediator _mediator
         ): ControllerBase
     {
-
+        /// <summary>
+        /// Get list of available blockchains
+        /// </summary>
+        /// <returns>List of blockchains</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Blockchain>>> Get()
         {
@@ -41,7 +45,7 @@ namespace ChainBlockify.Controllers
         {
             try
             {
-                var result = await _mediator.Send(new FetchBlockchainInfoCommand(Id));
+                var result = await _mediator.Send(new ResolveBlockchainInfoCommand(Id));
                 return Created("/", result);
             }
             catch (EntityNotFoundException ex)

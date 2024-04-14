@@ -7,6 +7,7 @@
 	  <InvariantGlobalization>false</InvariantGlobalization>
     <UserSecretsId>36ec984b-baee-452d-b175-c0f837b2d0bb</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

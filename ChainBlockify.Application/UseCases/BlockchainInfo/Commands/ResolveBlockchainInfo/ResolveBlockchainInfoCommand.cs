@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo
+namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.ResolveBlockchainInfo
 {
-    public record FetchBlockchainInfoCommand<DTO>(int BlockchainId) : IRequest<BaseBlockchainInfo>;
+    public record ResolveBlockchainInfoCommand(int BlockchainId) : IRequest<BaseBlockchainInfo>;
 }

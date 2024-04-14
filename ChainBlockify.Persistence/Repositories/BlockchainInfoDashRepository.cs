@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Persistence.Repositories
 {
-    internal class BlockchainInfoRepository(AppDbContext _dbContext) : IRepository<BlockchainInfoBtc>
+    internal class BlockchainInfoDashRepository(AppDbContext _dbContext) : IRepository<BlockchainInfoDash>
     {
-        public async Task<IEnumerable<BlockchainInfoBtc>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<BlockchainInfoDash>> GetAllAsync(CancellationToken cancellationToken)
         {
             try
             {
-                return await _dbContext.BlockchainInfoBtcDbSet.ToListAsync(cancellationToken);
+                return await _dbContext.BlockchainInfoDashDbSet.ToListAsync(cancellationToken);
             }
             catch (Exception ex)
             {
@@ -24,22 +24,22 @@ namespace ChainBlockify.Persistence.Repositories
             }
         }
 
-        public async Task<BlockchainInfoBtc> GetByIdAsync(int Id, CancellationToken cancellationToken)
+        public async Task<BlockchainInfoDash> GetByIdAsync(int Id, CancellationToken cancellationToken)
         {
             try
             {
-                return await _dbContext.BlockchainInfoBtcDbSet.FirstOrDefaultAsync(x => x.Id == Id, cancellationToken);
+                return await _dbContext.BlockchainInfoDashDbSet.FirstOrDefaultAsync(x => x.Id == Id, cancellationToken);
             }
             catch (Exception ex)
             {
                 throw new Exception($"Error occurred while retrieving blockchain by ID {Id}.", ex);
             }
         }
-        public async Task<BlockchainInfoBtc> CreateAsync(BlockchainInfoBtc entity, CancellationToken cancellationToken)
+        public async Task<BlockchainInfoDash> CreateAsync(BlockchainInfoDash entity, CancellationToken cancellationToken)
         {
             try
             {
-                _dbContext.BlockchainInfoBtcDbSet.Add(entity);
+                _dbContext.BlockchainInfoDashDbSet.Add(entity);
                 await _dbContext.SaveChangesAsync(cancellationToken);
                 return entity;
             }
@@ -49,11 +49,11 @@ namespace ChainBlockify.Persistence.Repositories
             }
         }
 
-        public async Task<BlockchainInfoBtc> UpdateAsync(BlockchainInfoBtc entity, CancellationToken cancellationToken)
+        public async Task<BlockchainInfoDash> UpdateAsync(BlockchainInfoDash entity, CancellationToken cancellationToken)
         {
             try
             {
-                var entityToUpdate = await _dbContext.BlockchainInfoBtcDbSet.FindAsync(entity.Id, cancellationToken);
+                var entityToUpdate = await _dbContext.BlockchainInfoDashDbSet.FindAsync(entity.Id, cancellationToken);
                 entityToUpdate.Name = entity.Name;
                 await _dbContext.SaveChangesAsync(cancellationToken);
                 return entityToUpdate;
@@ -67,8 +67,8 @@ namespace ChainBlockify.Persistence.Repositories
         {
             try
             {
-                var entityToDelete = _dbContext.BlockchainInfoBtcDbSet.FindAsync(Id, cancellationToken);
-                _dbContext.BlockchainInfoBtcDbSet.Remove(await entityToDelete);
+                var entityToDelete = _dbContext.BlockchainInfoDashDbSet.FindAsync(Id, cancellationToken);
+                _dbContext.BlockchainInfoDashDbSet.Remove(await entityToDelete);
             }
             catch (Exception ex)
             {
