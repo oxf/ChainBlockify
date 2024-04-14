@@ -19,9 +19,10 @@ namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockc
         ILogger<FetchBlockchainInfoCommandHandler> _logger,
         IMapper _mapper,
         IRepository<Domain.Entities.Blockchain> _blockchainRepository,
-        IBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto> _dataProvider) : IRequestHandler<FetchBlockchainInfoCommand, BaseBlockchainInfoBlockcypherDto>
+        IRepository<Domain.Entities.BlockchainInfoBtc> _blockchainInfoRepository,
+        IBlockchainInfoProvider<BlockchainInfoBtcBlockcypherDto> _dataProvider) : IRequestHandler<FetchBlockchainInfoCommand, BlockchainInfoBtc>
     {
-        public async Task<BaseBlockchainInfoBlockcypherDto> Handle(FetchBlockchainInfoCommand request, CancellationToken cancellationToken)
+        public async Task<BlockchainInfoBtc> Handle(FetchBlockchainInfoCommand request, CancellationToken cancellationToken)
         {
             // get blockchain by id
             var blockchain = await _blockchainRepository.GetByIdAsync(request.BlockchainId, cancellationToken);
@@ -37,9 +38,11 @@ namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockc
             }
             var response = await _dataProvider.GetBlockchainInfo(source.Url, cancellationToken);
             var entityToSave = _mapper.Map<BlockchainInfoBtc>(response);
+            entityToSave.CreatedAt = DateTime.UtcNow;
             // save blockchaininfo
+            var result = await _blockchainInfoRepository.CreateAsync(entityToSave, cancellationToken);
             _logger.LogInformation("Downloaded response" + entityToSave);
-            return response;
+            return result;
         }
     }
 }

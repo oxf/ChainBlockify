@@ -1,5 +1,6 @@
 ﻿using ChainBlockify.Application.DTOs.Blockcypher;
 using ChainBlockify.Domain;
+using ChainBlockify.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,5 +10,5 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo
 {
-    public record FetchBlockchainInfoCommand(int BlockchainId) : IRequest<BaseBlockchainInfoBlockcypherDto>;
+    public record FetchBlockchainInfoCommand(int BlockchainId) : IRequest<BlockchainInfoBtc>;
 }
