@@ -2,6 +2,7 @@
 using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchainInfo;
 using ChainBlockify.Domain.Entities;
 using ChainBlockify.Domain.Exceptions;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,13 +17,19 @@ namespace ChainBlockify.Application.UseCases.BlockchainInfo.Queries.GetBlockchai
     internal class GetResolveBlockchainInfoListByBlockchainIdQueryHandler(
         IMediator _mediator,
         ILogger<GetResolveBlockchainInfoListByBlockchainIdQueryHandler> _logger,
-        IRepository<Domain.Entities.Blockchain> _blockchainRepository
+        IRepository<Domain.Entities.Blockchain> _blockchainRepository,
+        IValidator<GetResolveBlockchainInfoListByBlockchainIdQuery> _validator
         ) : IRequestHandler<GetResolveBlockchainInfoListByBlockchainIdQuery, List<BaseBlockchainInfo>>
     {
         public async Task<List<BaseBlockchainInfo>> Handle(
             GetResolveBlockchainInfoListByBlockchainIdQuery request,
             CancellationToken cancellationToken)
         {
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException(validationResult.ToString());
+            }
             var blockchain = await _blockchainRepository.GetByIdAsync(request.BlockchainId, cancellationToken);
             if (blockchain == null)
             {

@@ -2,6 +2,7 @@
 using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.ResolveBlockchainInfo;
 using ChainBlockify.Domain.Entities;
 using ChainBlockify.Domain.Exceptions;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -55,9 +56,10 @@ namespace ChainBlockify.Test.Application
             // Arrange
             var logger = Substitute.For<ILogger<ResolveBlockchainInfoCommandHandler>>();
             var mediator = Substitute.For<IMediator>();
+            var validator = Substitute.For<AbstractValidator<ResolveBlockchainInfoCommand>>();
             var repository = Substitute.For<IRepository<Blockchain>>();
 
-            var handler = new ResolveBlockchainInfoCommandHandler(logger, mediator, repository);
+            var handler = new ResolveBlockchainInfoCommandHandler(logger, mediator, repository, validator);
 
             var blockchainId = 1;
 
@@ -76,8 +78,9 @@ namespace ChainBlockify.Test.Application
             var logger = Substitute.For<ILogger<ResolveBlockchainInfoCommandHandler>>();
             var mediator = Substitute.For<IMediator>();
             var repository = Substitute.For<IRepository<Blockchain>>();
+            var validator = Substitute.For<AbstractValidator<ResolveBlockchainInfoCommand>>();
 
-            var handler = new ResolveBlockchainInfoCommandHandler(logger, mediator, repository);
+            var handler = new ResolveBlockchainInfoCommandHandler(logger, mediator, repository, validator);
 
             var blockchainId = 1;
             var blockchain = new Blockchain { Id = blockchainId, Name = "TestBlockchain" };
@@ -98,8 +101,9 @@ namespace ChainBlockify.Test.Application
             var logger = Substitute.For<ILogger<ResolveBlockchainInfoCommandHandler>>();
             var mediator = Substitute.For<IMediator>();
             var repository = Substitute.For<IRepository<Blockchain>>();
+            var validator = Substitute.For<AbstractValidator<ResolveBlockchainInfoCommand>>();
 
-            var handler = new ResolveBlockchainInfoCommandHandler(logger, mediator, repository);
+            var handler = new ResolveBlockchainInfoCommandHandler(logger, mediator, repository, validator);
 
             var blockchainId = 1;
             var blockchain = new Blockchain { Id = blockchainId, Name = "TestBlockchain" };

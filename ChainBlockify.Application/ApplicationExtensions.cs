@@ -7,6 +7,7 @@ using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.ResolveBlockcha
 using ChainBlockify.Application.UseCases.BlockchainInfo.Queries.GetBlockchainInfoListByBlockchainId;
 using ChainBlockify.Domain;
 using ChainBlockify.Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -30,6 +31,9 @@ namespace ChainBlockify.Application
             services.AddTransient<IRequestHandler<GetBlockchainInfoListByBlockchainIdQuery<BlockchainInfoEth>, IEnumerable<BlockchainInfoEth>>, GetBlockchainInfoListByBlockchainIdQueryHandler<BlockchainInfoEth>>();
             services.AddTransient<IRequestHandler<GetBlockchainInfoListByBlockchainIdQuery<BlockchainInfoDash>, IEnumerable<BlockchainInfoDash>>, GetBlockchainInfoListByBlockchainIdQueryHandler<BlockchainInfoDash>>();
             services.AddAutoMapper(typeof(MappingProfile));
+            services.AddTransient<IValidator<GetBlockchainByIdQuery>, GetBlockchainByIdQueryValidator>();
+            services.AddTransient<IValidator<ResolveBlockchainInfoCommand>, ResolveBlockchainInfoCommandValidator>();
+            services.AddTransient<IValidator<GetResolveBlockchainInfoListByBlockchainIdQuery>, GetResolveBlockchainInfoListByBlockchainIdQueryValidator>();
             return services;
         }
     }
