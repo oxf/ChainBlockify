@@ -27,7 +27,7 @@ namespace ChainBlockify.Test.Application
             var mockMapper = Substitute.For<IMapper>();
             var handler = new GetBlockchainByIdQueryHandler(mockMapper, mockRepository);
             var expectedBlockchain = new Domain.Entities.Blockchain { Id = 1, Name = "TestBlockchainName" };
-            var expectedDto = new GetBlockchainByIdDto(1, "TestBlockchainName");
+            var expectedDto = new GetBlockchainByIdDto(1, "TestBlockchainName", null);
 
             mockRepository.GetByIdAsync(validId, Arg.Any<CancellationToken>())
                           .Returns(Task.FromResult(expectedBlockchain));

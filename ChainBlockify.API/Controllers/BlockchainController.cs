@@ -19,18 +19,22 @@ namespace ChainBlockify.Controllers
         ): ControllerBase
     {
         /// <summary>
-        /// Get list of available blockchains
+        /// Get list of available blockchains. Available actions are included.
         /// </summary>
         /// <returns>List of blockchains</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Blockchain>>> Get()
+        public async Task<ActionResult<IEnumerable<GetBlockchainListDto>>> Get()
         {
             var result = await _mediator.Send(new GetBlockchainListQuery());
             return Ok(result);
         }
-
+        /// <summary>
+        /// Get blockchain by Id. Available actions are included.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>Blockchain details and actions</returns>
         [HttpGet("{Id}")]
-        public async Task<ActionResult<Blockchain>> GetById(int Id)
+        public async Task<ActionResult<GetBlockchainByIdDto>> GetById(int Id)
         {
             try
             {
@@ -43,18 +47,18 @@ namespace ChainBlockify.Controllers
             }
         }
         /// <summary>
-        /// 
+        /// Get list of blockchain info ordered by CreateAt (Utc time when entry was downloaded into database).
         /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="Page"></param>
-        /// <param name="PageSize"></param>
-        /// <returns></returns>
+        /// <param name="Id">BlockchainId</param>
+        /// <param name="PageNumber">Page number (Should be greater than 0)</param>
+        /// <param name="PageSize">Page size (Should be greater than 0)</param>
+        /// <returns>Paged list of Blockchain info from the database</returns>
         [HttpGet("{Id}/info")]
-        public async Task<ActionResult<List<BaseBlockchainInfo>>> GetBlockchainInfoListByBlockchainId(int Id, [FromQuery] int PageNumber = 0, [FromQuery] int PageSize = 10)
+        public async Task<ActionResult<List<BaseBlockchainInfo>>> GetBlockchainInfoListByBlockchainId(int Id, [FromQuery] int PageNumber = 1, [FromQuery] int PageSize = 10)
         {
             try
             {
-                var result = await _mediator.Send(new GetBlockchainInfoListByBlockchainIdQuery(Id, PageNumber, PageSize));
+                var result = await _mediator.Send(new GetResolveBlockchainInfoListByBlockchainIdQuery(Id, PageNumber, PageSize));
                 return Ok(result);
             }
             catch (EntityNotFoundException ex)
@@ -73,7 +77,7 @@ namespace ChainBlockify.Controllers
             try
             {
                 var result = await _mediator.Send(new ResolveBlockchainInfoCommand(Id));
-                return Created("/", result);
+                return Created($"/{result.Id}", result);
             }
             catch (EntityNotFoundException ex)
             {

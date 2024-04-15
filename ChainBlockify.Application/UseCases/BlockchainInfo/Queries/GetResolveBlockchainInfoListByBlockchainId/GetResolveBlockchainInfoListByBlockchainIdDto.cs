@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.UseCases.BlockchainInfo.Queries.GetBlockchainInfoListByBlockchainId
 {
-    public class GetBlockchainInfoListByBlockchainIdDto
+    internal class GetResolveBlockchainInfoListByBlockchainIdDto
     {
     }
 }
