@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ChainBlockify.Domain
+namespace ChainBlockify.Application.DTOs.Blockcypher
 {
     public class BlockchainInfoEthBlockcypherDto: BaseBlockchainInfoBlockcypherDto
     {
