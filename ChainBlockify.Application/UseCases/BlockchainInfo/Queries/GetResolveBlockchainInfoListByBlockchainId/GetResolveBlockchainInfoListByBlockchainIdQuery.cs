@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.UseCases.BlockchainInfo.Queries.GetBlockchainInfoListByBlockchainId
 {
-    public record GetBlockchainInfoListByBlockchainIdQuery<TEntity>(int PageNumber,
-        int PageSize): IRequest<IEnumerable<TEntity>> where TEntity : BaseTimestampEntity;
+    public record GetResolveBlockchainInfoListByBlockchainIdQuery(int BlockchainId,
+        int PageNumber,
+        int PageSize): IRequest<List<BaseBlockchainInfo>>;
 }

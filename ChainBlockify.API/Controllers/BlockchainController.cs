@@ -54,7 +54,7 @@ namespace ChainBlockify.Controllers
         {
             try
             {
-                var result = await _mediator.Send(new GetBlockchainInfoListByBlockchainIdQuery(Id, PageNumber, PageSize));
+                var result = await _mediator.Send(new GetResolveBlockchainInfoListByBlockchainIdQuery(Id, PageNumber, PageSize));
                 return Ok(result);
             }
             catch (EntityNotFoundException ex)
@@ -73,7 +73,7 @@ namespace ChainBlockify.Controllers
             try
             {
                 var result = await _mediator.Send(new ResolveBlockchainInfoCommand(Id));
-                return Created("/", result);
+                return Created($"/{result.Id}", result);
             }
             catch (EntityNotFoundException ex)
             {
