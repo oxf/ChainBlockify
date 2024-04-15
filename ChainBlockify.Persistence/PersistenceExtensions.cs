@@ -24,6 +24,9 @@ namespace ChainBlockify.Persistence
             services.AddTransient<IRepository<BlockchainInfoBtc>, BlockchainInfoBtcRepository>();
             services.AddTransient<IRepository<BlockchainInfoEth>, BlockchainInfoEthRepository>();
             services.AddTransient<IRepository<BlockchainInfoDash>, BlockchainInfoDashRepository>();
+            services.AddTransient<IPagingRepository<BlockchainInfoBtc>, BlockchainInfoPagingRepository<BlockchainInfoBtc>>();
+            services.AddTransient<IPagingRepository<BlockchainInfoEth>, BlockchainInfoPagingRepository<BlockchainInfoEth>>();
+            services.AddTransient<IPagingRepository<BlockchainInfoDash>, BlockchainInfoPagingRepository<BlockchainInfoDash>>();
         }
     }
 }

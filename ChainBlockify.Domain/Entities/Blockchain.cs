@@ -6,6 +6,7 @@ namespace ChainBlockify.Domain.Entities
     public class Blockchain: BaseEntity
     {
         public string Name { get; set; }
+        public string DbTableName { get; set; }
         public List<BlockchainBlockchainSource> Sources { get; set; }
     }
 }

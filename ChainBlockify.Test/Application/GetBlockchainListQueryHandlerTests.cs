@@ -34,14 +34,14 @@ namespace ChainBlockify.Test.Application
 
             var expectedDtoList = new List<GetBlockchainListDto>
             {
-                new GetBlockchainListDto(1, "Bitcoin"),
-                new GetBlockchainListDto (2, "Ethereum")
+                new GetBlockchainListDto(1, "Bitcoin", null),
+                new GetBlockchainListDto (2, "Ethereum", null)
             };
 
             mapper.Map<GetBlockchainListDto>(Arg.Any<Blockchain>()).Returns(x =>
             {
                 var blockchain = x.ArgAt<Blockchain>(0);
-                return new GetBlockchainListDto(blockchain.Id, blockchain.Name);
+                return new GetBlockchainListDto(blockchain.Id, blockchain.Name, null);
             });
 
             // Act
