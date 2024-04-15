@@ -10,5 +10,9 @@ using System.Threading.Tasks;
 
 namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.ResolveBlockchainInfo
 {
+    /// <summary>
+    /// Command body
+    /// </summary>
+    /// <param name="BlockchainId">BlockchainId</param>
     public record ResolveBlockchainInfoCommand(int BlockchainId) : IRequest<BaseBlockchainInfo>;
 }
