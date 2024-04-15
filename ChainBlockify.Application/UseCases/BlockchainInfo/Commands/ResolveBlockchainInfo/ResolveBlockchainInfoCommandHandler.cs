@@ -4,6 +4,7 @@ using ChainBlockify.Application.UseCases.BlockchainInfo.Commands.FetchBlockchain
 using ChainBlockify.Domain;
 using ChainBlockify.Domain.Entities;
 using ChainBlockify.Domain.Exceptions;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,7 +24,8 @@ namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.ResolveBloc
     /// <param name="_blockchainRepository">DB access for Blockchain entity</param>
     public class ResolveBlockchainInfoCommandHandler(ILogger<ResolveBlockchainInfoCommandHandler> _logger,
         IMediator _mediator,
-        IRepository<Domain.Entities.Blockchain> _blockchainRepository) : IRequestHandler<ResolveBlockchainInfoCommand, BaseBlockchainInfo>
+        IRepository<Domain.Entities.Blockchain> _blockchainRepository,
+        IValidator<ResolveBlockchainInfoCommand> _validator) : IRequestHandler<ResolveBlockchainInfoCommand, BaseBlockchainInfo>
     {
         /// <summary>
         /// Command turns BlockchainId into FetchBlockchainInfoCommand<> and sends the command via MediatR
@@ -35,6 +37,11 @@ namespace ChainBlockify.Application.UseCases.BlockchainInfo.Commands.ResolveBloc
         {
             try
             {
+                var validationResult = _validator.Validate(request);
+                if(!validationResult.IsValid)
+                {
+                    throw new ArgumentException(validationResult.ToString());
+                }
                 // Get Source
                 Domain.Entities.Blockchain blockchain = await GetBlockchain(request.BlockchainId, cancellationToken);
                 BlockchainBlockchainSource source = GetSource(blockchain);

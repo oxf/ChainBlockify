@@ -18,9 +18,10 @@ namespace ChainBlockify.Persistence.Repositories
         {
             try
             {
-                return await _dbContext.Set<TTable>().Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
+                return await _dbContext.Set<TTable>()
                 .OrderByDescending(x => x.CreatedAt)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync(cancellationToken);
             } catch (Exception ex)
             {

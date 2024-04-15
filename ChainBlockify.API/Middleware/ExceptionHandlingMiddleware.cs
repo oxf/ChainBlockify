@@ -16,10 +16,10 @@ namespace ChainBlockify.API.Middleware
                 var problemDetails = new ProblemDetails
                 {
                     Status = StatusCodes.Status500InternalServerError,
-                    Title = "Server error"
+                    Title = "Internal server error"
                 };
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                await context.Response.WriteAsJsonAsync(problemDetails);
+                await context.Response.WriteAsync("Internal server error");
             }
         }
     }
